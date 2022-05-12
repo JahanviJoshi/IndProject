@@ -1,0 +1,85 @@
+﻿@model TicketGenerator.Models.Login
+
+@{
+    ViewData["Title"] = "GetUser";
+}
+
+
+
+<style>
+            .row {
+                top:120%;
+                max-width: 300px;
+	            padding: 10px 20px;
+	            background: #ADD8E6;
+	            margin: 10px auto;
+                border-radius: 8px;
+	            
+            }
+
+            .input{
+                  height: 20px;
+                  flex: 0 0 200px;
+                  margin-left: 10px;
+                  font-weight: bold;
+                  padding-bottom: 8px;
+            }
+
+            .col-md-4{
+                width:250px;
+                
+                padding: 20px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                text-align: center;
+                padding-bottom: 8px;
+            }
+
+            .form-group
+            {
+                padding-bottom: 10px;
+                font-weight: bold;
+            }
+            </style>
+
+<div class="row">
+    <div class="col-md-4">
+        
+        <h4>Login</h4>
+        <hr />
+        <form asp-action="GetUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+           
+            <div class="form-group">
+                <label asp-for="EmailId" class="control-label "  ></label>
+                <input asp-for="EmailId" class="form-control"  />
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="PassWord" class="control-label"></label>
+                <input asp-for="PassWord" class="form-control" />
+                <span asp-validation-for="PassWord" class="text-danger"></span>
+            </div>
+
+      
+           <div class="form-group" style="color:red">
+               @ViewBag.Message
+
+           </div>
+            
+            
+            <div class="form-group">
+               
+                <input type="submit" value="Login" class="btn btn-primary" />
+                 <input type='button' value='Register' class="btn btn-primary" onclick='window.location = "@Url.Action("Create", "Registration")";' />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

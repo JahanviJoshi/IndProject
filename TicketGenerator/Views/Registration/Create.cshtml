@@ -1,0 +1,98 @@
+﻿@model TicketGenerator.Models.Login
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<html>
+    <head>
+        <meta name = "viewport" content="widthdriver-width" />
+        
+        <style>
+            .row {
+                top:120%;
+                max-width: 300px;
+	            padding: 10px 20px;
+	            
+                background:#ADD8E6;
+	            margin: 10px auto;
+	            
+	           
+	            border-radius: 8px;
+	            
+            }
+
+            .input{
+                  height: 20px;
+                  flex: 0 0 200px;
+                  margin-left: 10px;
+                  font-weight: bold;
+                  padding-bottom: 8px;
+            }
+
+            .col-md-4{
+                width:250px;
+                highth: 20px;
+                padding: 20px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                text-align: center;
+                padding-bottom: 8px;
+            }
+
+            .form-group
+            {
+                padding-bottom: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+<div class="row">
+    <div class="col-md-4">
+         <h4>Registartion</h4>
+        <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailId" class="control-label"></label>
+                <input asp-for="EmailId" class="form-control" />
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNo" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="PassWord" class="control-label"></label>
+                <input asp-for="PassWord" class="form-control" />
+                <span asp-validation-for="PassWord" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

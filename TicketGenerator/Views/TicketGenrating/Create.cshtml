@@ -1,0 +1,231 @@
+﻿@model Tickect
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.main{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.vertical-menu {
+  width: 200px;
+  display:block;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none; 
+}
+
+.dropdown-btn {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.container {
+        margin-top:0px;
+        margin-left: 00px;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+  }
+
+
+</style>
+</head>
+<body>
+
+
+<section class="main">
+
+<div class="vertical-menu" >
+    
+    <h1>Menu</h1>
+    <a href="#" class="active">Home</></a> 
+    <div class="form-group">
+        @Html.LabelFor(m=>m.Title)
+        @Html.TextAreaFor(m=>m.Title,new{@class="form-control"})
+    </div>
+
+    @*<div class="form-group">
+@Html.LabelFor(m => m.AssignTo)
+@Html.DropDownList(m => m.Role, // 1. Store selected value in Model.Role;
+// when page is rendered after postback,
+// take selected value from Model.Role.
+Model.Roles,
+"- Please select a Role -",
+new { @class = "form-control" })
+</div>*@
+
+@*@Html.DropDownList("AssignRole",null,new 
+{onchange="document.location.href='/TicketGenrating/Index?value='+this.value"})*@
+   <select class="form-control" id="Role" name="Role">
+      
+    <option value="">- Please select a role-</option>
+    <option value="User">User</option>
+    <option value="Supporter">Supporter</option>
+    <option value="Enginner">Enginner</option>
+    
+   </select>
+
+   <select class="form-control" id="Engineer" name="Engineer">
+    <option value="">- Please select a Engineer-</option>
+    <option value="John">John</option>
+    <option value="Sam">Sam</option>
+    <option value="Sara">Sara</option>
+   </select>
+
+
+   <select class="form-control" id="status" name="status">
+    <option value="">- Please select Status-</option>
+    <option value="Open">Open</option>
+    <option value="Pending">Pending</option>
+    <option value="Close">Close</option>
+   </select>
+    
+    
+  @*  <button class="dropdown-btn">AssignToRole
+    <i class="fa fa-caret-down"></i>
+    </button>
+
+
+    <div class="dropdown-container">
+   
+
+    <a href="#">Engineer</a>
+    <a href="#">Supporter</a>
+    <a href="#">User</a>
+    </div>
+
+     <button class="dropdown-btn">AssignEnginner</button>
+
+
+    <div class="dropdown-container">
+    <a href="#">John</a>
+    <a href="#">Sara</a>
+    <a href="#">Joey</a>
+    </div>
+*@
+
+</div>
+    
+<section class ="container">
+
+
+	<ul class="nav nav-tabs" role="tablist">
+		@{
+                    <li class ="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#Public">Public</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Internal">Internal</a>
+                    </li>
+                }
+
+            </ul>
+
+            <section class="tab-content">
+                <div id="Public" class=" container tab-pane active">
+                    @{
+                        //if (ViewBag.Roleid == 7)
+                        //{
+                            Html.RenderPartial("_PublicPartial", Model);
+                        //}
+                    }
+                </div>
+        <div id="Public" class="  tab-pane fade">  	
+
+            @{
+                Html.RenderPartial("_PublicPartial",Model);
+                <small>ViewBag.title</small>
+                <small>ViewBag.Message</small>
+            }
+		</div>	
+       
+
+       
+        <div id="Internal" class=" tab-pane fade">  	
+
+            @{
+                Html.RenderPartial("_InternalPartial",Model);
+            }
+		</div>	
+
+         <div id="Internal" class=" container tab-pane  active">  	
+
+            @{
+                Html.RenderPartial("BindingPublicPartial",Model);
+            }
+		</div>	
+
+         <div id="Internal" class=" container tab-pane fade ">  	
+
+            @{
+                Html.RenderPartial("BindingPublicPartial",Model);
+            }
+		</div>	
+</section>
+
+</section>
+</section>
+
+
+ </body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+
+
