@@ -63,8 +63,6 @@ namespace TicketGenerator.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RoleId).HasColumnName("RoleID");
-
                 entity.Property(e => e.SignIn).HasColumnType("datetime");
 
                 entity.Property(e => e.SignOut).HasColumnType("datetime");
@@ -72,11 +70,6 @@ namespace TicketGenerator.Models
                 entity.Property(e => e.UserName)
                     .HasMaxLength(200)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.Logins)
-                    .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__login__RoleID__398D8EEE");
             });
 
             modelBuilder.Entity<MultipleComment>(entity =>

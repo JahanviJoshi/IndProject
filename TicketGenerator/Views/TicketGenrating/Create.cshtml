@@ -1,9 +1,17 @@
 ﻿@model Tickect
 
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+
+    
+.LogOut{
+                 position:absolute;
+                 top:21px;
+                 left:1200px;
+}
 
 .main{
     display: flex;
@@ -64,6 +72,9 @@
 </head>
 <body>
 
+    <div class="LogOut">
+    <a asp-action="LogOut" asp-controller="Login" class="btn btn-primary">LogOut</a>
+    </div>
 
 <section class="main">
 
@@ -75,6 +86,12 @@
         @Html.LabelFor(m=>m.Title)
         @Html.TextAreaFor(m=>m.Title,new{@class="form-control"})
     </div>
+
+     <div class="form-group">
+        @Html.LabelFor(m=>m.AssignTo)
+        @Html.TextAreaFor(m=>m.AssignTo,new{@class="form-control"})
+    </div>
+
 
     @*<div class="form-group">
 @Html.LabelFor(m => m.AssignTo)
@@ -88,14 +105,14 @@ new { @class = "form-control" })
 
 @*@Html.DropDownList("AssignRole",null,new 
 {onchange="document.location.href='/TicketGenrating/Index?value='+this.value"})*@
-   <select class="form-control" id="Role" name="Role">
+   @*<select class="form-control" id="Role" name="Role">
       
     <option value="">- Please select a role-</option>
     <option value="User">User</option>
     <option value="Supporter">Supporter</option>
     <option value="Enginner">Enginner</option>
     
-   </select>
+   </select>*@
 
    <select class="form-control" id="Engineer" name="Engineer">
     <option value="">- Please select a Engineer-</option>
@@ -181,14 +198,16 @@ new { @class = "form-control" })
             }
 		</div>	
 
-         <div id="Internal" class=" container tab-pane  active">  	
+      
+
+         <div id="Binding" class=" container tab-pane  active">  	
 
             @{
                 Html.RenderPartial("BindingPublicPartial",Model);
             }
 		</div>	
 
-         <div id="Internal" class=" container tab-pane fade ">  	
+         <div id="Binding" class=" container tab-pane fade ">  	
 
             @{
                 Html.RenderPartial("BindingPublicPartial",Model);
@@ -208,23 +227,23 @@ new { @class = "form-control" })
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
 
-<script>
+@*<script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-</script>
+     for (i = 0; i < dropdown.length; i++) {
+         dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+         if (dropdownContent.style.display === "block") {
+             dropdownContent.style.display = "none";
+         } else {
+            dropdownContent.style.display = "block";
+     }
+     });
+         }
+</script>*@
 
 
 

@@ -6,5 +6,7 @@
         Task<TEntity> GetAsync(TPk id);
         Task<TEntity> CreateAsync(TEntity entity);
 
+
+
     }
 }

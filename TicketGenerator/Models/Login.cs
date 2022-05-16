@@ -22,9 +22,7 @@ namespace TicketGenerator.Models
         public DateTime? SignIn { get; set; }
         public DateTime? SignOut { get; set; }
         public int? BlockCount { get; set; }
-        public int RoleId { get; set; }
 
-        public virtual Role? Role { get; set; }
         public virtual ICollection<MultipleComment> MultipleComments { get; set; }
         public virtual ICollection<Tickect> Tickects { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }

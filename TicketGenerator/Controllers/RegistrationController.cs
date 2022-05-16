@@ -9,10 +9,12 @@ namespace TicketGenerator.Controllers
     public class RegistrationController : Controller
     {
         private  IService<Login, int> regserv;
+        private TickectCreatingDbContext context;
 
-        public RegistrationController(IService<Login, int> regserv)
+        public RegistrationController(IService<Login, int> regserv, TickectCreatingDbContext context)
         {
             this.regserv = regserv;
+            this.context = context;
         }
         
         public IActionResult Index()
@@ -29,10 +31,15 @@ namespace TicketGenerator.Controllers
         [HttpPost]
         public IActionResult Create(Login login)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                
-                login.SignIn = DateTime.Now;
+                var EmailAlreadyExist = context.Logins.Any(x => x.EmailId == login.EmailId);
+                if (EmailAlreadyExist)
+                {
+                    ViewBag.AlreadyExistMessage = "Email Already Exist";
+                    return View(login);
+                }
+                //login.SignIn = DateTime.Now;
                 var password = EncryptAsync(login.PassWord).Result;
                 string str = login.FirstName.Substring(0, 4);
                 string str2 = login.LastName.Substring(0, 2);
@@ -41,7 +48,9 @@ namespace TicketGenerator.Controllers
                 login.UserName = strnew;
                 login.PassWord =password;
                 var res = regserv.CreateAsync(login).Result;
-                return RedirectToAction("Index","Home");
+                ViewBag.Message = "Register Successfully";
+                return View(login);
+                return RedirectToAction("Index", "Home");
             }
             else
             {

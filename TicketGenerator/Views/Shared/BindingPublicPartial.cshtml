@@ -1,5 +1,23 @@
-﻿
+﻿@*@model List<TicketGenerator.Models.Tickect>*@
 @model TicketGenerator.Models.Tickect
+
+<style>
+table {
+        width: 100%
+}
+
+table,th,td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color:Silver
+}
+
+th,td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+
 
 
 <html>
@@ -9,9 +27,9 @@
     <title>Index</title>
 </head>
 <body>
-    <h4>Customers</h4>
-    <hr/>
-    <table cellpadding="0" cellspacing="0">
+   
+<hr/>
+<table >
         <tr>
             <th>TicketNo</th>
             <th>Title</th>
@@ -20,18 +38,28 @@
             <th>Status</th>
             <th>AssignTo</th>
         </tr>
-        @foreach (var item in @ViewBag.tickect)
-        {
-            <tr>
-                <td>@item.TicketNo</td>
-                <td>@item.Title</td>
-                <td>@item.Message</td>
-                <td>@item.DateAndTime</td>
-                 <td>@item.Status</td>
-                  <td>@item.AssignTo</td>
-            </tr>
-        }
-    </table>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => modelItem.TicketNo)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.Title)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.Message)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.DateAndTime)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.Status)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.AssignTo)</td>
+        </tr>
+
+       
+            @*<tr>
+                <td>@ViewBag.TicketNo</td>
+                <td>@ViewBag.Title</td>
+                <td>@ViewBag.Message</td>
+                <td>@ViewBag.DataTime</td>
+                <td>@ViewBag.Status</td>
+                <td>@ViewBag.AssignTo</td>
+            </tr>*@
+        
+</table>
+
+
 </body>
 </html>
 
