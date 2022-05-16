@@ -66,7 +66,7 @@ namespace TicketGenerator.Controllers
         public IActionResult Create(Tickect tickect , int id)
         {
             var Userid = HttpContext.Session.GetInt32("UserId");
-            var Roleid = HttpContext.Session.GetInt32("RoleId");
+            var Roleid = HttpContext.Session.GetInt32("RoleId");  
             //var Emailid = HttpContext.Session.GetString("EmailId");
             if (ModelState.IsValid)
             {
